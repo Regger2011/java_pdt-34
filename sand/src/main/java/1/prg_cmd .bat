@@ -1,0 +1,1 @@
+javac c:\java\prg.java
