@@ -10,4 +10,7 @@ public class Rectangle {
         this.b=b;
     /*конец конструктора*/
     }
+    public double Measures() {
+        return this.a*this.b;
+    }
 }
