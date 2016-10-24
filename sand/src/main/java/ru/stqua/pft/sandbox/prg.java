@@ -5,11 +5,15 @@ public class prg {
         Hi (" This is Me");
         Hi (" This is U");
         Hi (" What's UP");
-        double l = 10; /* задаем величину стороны квадрата */
-        double a = 11; /* задаем величину длины прямоугольника */
-        System.out.println("Площадь квадрата со стороной равной " + l + " равна " + Measures(l)); /* вывод результата */
-        double b = 12; /* задаем величину высоты прямоугольника */
-        System.out.println("Площадь прямоугольника со сторонами равными " + a +" и "+b+ " равна " + Measures(a,b)); /* вывод результата */
+
+        Square s = new Square(5);
+        /*s.l = 10; /* задаем величину стороны квадрата */
+        System.out.println("Площадь квадрата со стороной равной " + s.l + " равна " + Measures(s)); /* вывод результата */
+
+        Rectangle sr =new Rectangle();
+        sr.a = 11; /* задаем величину длины прямоугольника */
+        sr.b = 12; /* задаем величину высоты прямоугольника */
+        System.out.println("Площадь прямоугольника со сторонами равными " + sr.a +" и "+sr.b+ " равна " + Measures(sr)); /* вывод результата */
     }
     public static void  Hi (String smbd) {
             /* String smbd = " - This is Me"; */
@@ -18,18 +22,10 @@ public class prg {
         System.out.println("________________________________");
         System.out.println();
     }
-    public static double Measures(double l) {
-        return l*l;
-            /*double s = l * l; /* задаем формулу расчета площади квадрата */
-            /*double p = 4 * l; /* задаем формулу расчета периметра квадрата */
-            /*System.out.println("Площадь квадрата со стороной равной " + l + " равна " + s); /* вывод результата */
-            /*System.out.println("Периметр квадрата со стороной равной " + l + " равен " + p); /* вывод результата */
+    public static double Measures(Square s) {
+        return s.l*s.l;
     }
-    public static double Measures(double a,double b) {
-        return a*b;
-            /*double s = l * l; /* задаем формулу расчета площади квадрата */
-            /*double p = 4 * l; /* задаем формулу расчета периметра квадрата */
-            /*System.out.println("Площадь квадрата со стороной равной " + l + " равна " + s); /* вывод результата */
-            /*System.out.println("Периметр квадрата со стороной равной " + l + " равен " + p); /* вывод результата */
+    public static double Measures(Rectangle sr) {
+        return sr.a*sr.b;
     }
 }
