@@ -1,4 +1,4 @@
-package ru.stqua.pft.sandbox;
+package ru.stqa.pft.sandbox;
 
 public class Point {
     String point_name;

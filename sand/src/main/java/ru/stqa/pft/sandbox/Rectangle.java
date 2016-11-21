@@ -1,16 +1,14 @@
-package ru.stqua.pft.sandbox;
+package ru.stqa.pft.sandbox;
 
 public class Rectangle {
     public double a;
     public double b;
 
-    /*создаем конструктор*/
     public Rectangle (double a, double b){
         this.a=a;
         this.b=b;
-    /*конец конструктора*/
     }
-    public double Measures() {
+    public double Rectangle_Area() {
         return this.a*this.b;
     }
 }

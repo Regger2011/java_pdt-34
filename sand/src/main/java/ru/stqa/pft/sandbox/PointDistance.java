@@ -1,4 +1,4 @@
-package ru.stqua.pft.sandbox;
+package ru.stqa.pft.sandbox;
 
 public class PointDistance {
     Point p1;

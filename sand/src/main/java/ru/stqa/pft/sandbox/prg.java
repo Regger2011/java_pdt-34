@@ -1,4 +1,4 @@
-package ru.stqua.pft.sandbox;
+package ru.stqa.pft.sandbox;
 
 public class prg {
     public static void main(String[] args) {
