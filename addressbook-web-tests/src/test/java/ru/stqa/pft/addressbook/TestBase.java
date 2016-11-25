@@ -10,14 +10,14 @@ import java.util.concurrent.TimeUnit;
 public class TestBase {
     FirefoxDriver wd;
 
-    /*public static boolean isAlertPresent(FirefoxDriver wd) {
+    public static boolean isAlertPresent(FirefoxDriver wd) {
         try {
             wd.switchTo().alert();
             return true;
         } catch (NoAlertPresentException e) {
             return false;
         }
-    }*/
+    }
 
     @BeforeMethod
     public void setUp() throws Exception {
