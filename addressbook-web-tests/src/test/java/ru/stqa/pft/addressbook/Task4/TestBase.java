@@ -1,4 +1,4 @@
-package ru.stqa.pft.addressbook;
+package ru.stqa.pft.addressbook.Task4;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
@@ -122,6 +122,7 @@ public class TestBase {
 
     protected void deleteContact() {
         wd.findElement(By.xpath("//div[@id='content']/form[2]/div[2]/input")).click();
+        wd.switchTo().alert().accept();
     }
 
     protected void selectContact() {
