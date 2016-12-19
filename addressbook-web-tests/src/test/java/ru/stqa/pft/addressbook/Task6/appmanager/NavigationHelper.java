@@ -52,4 +52,5 @@ public class NavigationHelper extends BaseHelper {
     public void selection() {
         click(By.name("selected[]"));
     }
+
 }
