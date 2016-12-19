@@ -1,8 +1,8 @@
-package ru.stqa.pft.addressbook.Task5.appmanager;
+package ru.stqa.pft.addressbook.Task6.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import ru.stqa.pft.addressbook.Task5.model.ContactData;
+import ru.stqa.pft.addressbook.Task6.model.ContactData;
 
 public class ContactHelper extends BaseHelper {
 

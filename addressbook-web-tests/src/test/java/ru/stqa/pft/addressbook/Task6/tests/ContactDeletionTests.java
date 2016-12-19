@@ -1,7 +1,6 @@
-package ru.stqa.pft.addressbook.Task5.tests;
+package ru.stqa.pft.addressbook.Task6.tests;
 
 import org.testng.annotations.Test;
-import ru.stqa.pft.addressbook.Task5.appmanager.BaseHelper;
 
 public class ContactDeletionTests extends TestBase {
 

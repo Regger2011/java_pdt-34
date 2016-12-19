@@ -1,12 +1,13 @@
-package ru.stqa.pft.addressbook.Task5.appmanager;
+package ru.stqa.pft.addressbook.Task6.appmanager;
 
 import org.openqa.selenium.firefox.FirefoxDriver;
+
 import java.util.concurrent.TimeUnit;
 
 public class AppManager {
     FirefoxDriver wd;
 
-    private  SessionHelper sessionHelper;
+    private SessionHelper sessionHelper;
     private GroupHelper groupHelper;
     private ContactHelper contactHelper;
     private NavigationHelper navigationHelper;
