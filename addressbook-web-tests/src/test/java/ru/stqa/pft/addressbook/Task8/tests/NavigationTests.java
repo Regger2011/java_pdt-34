@@ -17,6 +17,8 @@ public class NavigationTests extends TestBase {
         //app.getNavigationHelper().backToPreviousPage();
         app.getNavigationHelper().gotoExportPage();
         app.getNavigationHelper().gotoImportPage();
+        app.getNavigationHelper().gotoEditGroupsPage();
+        app.getNavigationHelper().gotoNewGroupsPage();
         app.getSessionHelper().logout();
     }
 }
