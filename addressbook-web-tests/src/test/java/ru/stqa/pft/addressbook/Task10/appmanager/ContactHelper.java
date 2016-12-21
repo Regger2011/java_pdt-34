@@ -61,11 +61,4 @@ public class ContactHelper extends BaseHelper {
     public boolean isThereAContact() {
         return isElementPresent(By.name("selected[]"));
     }
-/*
-    public void checkAnyContactPresent() {
-        if (! isThereAContact()) {
-
-            createContact(new ContactData("Firstname", null,null,null,null,null,null,null,null, "[none]"),true);
-        }
-    }*/
 }
