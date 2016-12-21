@@ -18,6 +18,8 @@ public class GroupModificationTests extends TestBase {
         app.getGroupHelper().submitUpdateGroupModification();
         app.getGroupHelper().returnToGroupPage();
         int after = app.getGroupHelper().getGroupCount();
-        Assert.assertEquals(after,before);
+        if (before > 0) {
+            Assert.assertEquals(after, before);
+        }
     }
 }
