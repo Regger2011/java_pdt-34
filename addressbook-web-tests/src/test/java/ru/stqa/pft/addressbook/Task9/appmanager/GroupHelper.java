@@ -39,4 +39,21 @@ public class GroupHelper extends BaseHelper {
     public void submitUpdateGroupModification() {
         click(By.name("update"));
     }
+
+    public void createGroup(GroupData group) {
+        initGroupCreation();
+        fillGroupForm(group);
+        submitGroupCreation();
+        returnToGroupPage();
+    }
+
+    public boolean isThereAGroup() {
+        return isElementPresent(By.name("selected[]"));
+    }
+
+    public void checkAnyGroupPresent() {
+        if (! isThereAGroup()) {
+            createGroup(new GroupData("test", null, null));
+        }
+    }
 }
