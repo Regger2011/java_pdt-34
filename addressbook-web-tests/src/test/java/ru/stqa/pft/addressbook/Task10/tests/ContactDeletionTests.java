@@ -14,13 +14,12 @@ public class ContactDeletionTests extends TestBase {
             app.getNavigationHelper().gotoAddContactPage();
             app.getContactHelper().createContact(new ContactData("Firstname", null,null,null,null,null,null,null,null, "[none]"),true);
         }
-        app.getNavigationHelper().selection();
+        if (before > 0) {
+        app.getNavigationHelper().selection(before-1);
         app.getContactHelper().deleteContact();
         app.getNavigationHelper().gotoHomePage();
         int after = app.getContactHelper().getContactCount();
-        if (before > 0) {
             Assert.assertEquals(after, before - 1);
         }
     }
-
 }

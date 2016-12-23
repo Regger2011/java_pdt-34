@@ -11,11 +11,11 @@ public class GroupDeletionTests extends TestBase {
        app.getNavigationHelper().gotoGroupsPage();
        int before = app.getGroupHelper().getGroupCount();
        app.getGroupHelper().checkAnyGroupPresent();
-       app.getNavigationHelper().selection();
+       if (before > 0) {
+       app.getNavigationHelper().selection(before-1);
        app.getGroupHelper().deleteSelectedGroup();
        app.getGroupHelper().returnToGroupPage();
        int after = app.getGroupHelper().getGroupCount();
-       if (before > 0) {
          Assert.assertEquals(after, before - 1);
        }
     }
