@@ -4,8 +4,7 @@ import org.testng.annotations.Test;
 
 public class NavigationTests extends TestBase {
 
-    @Test
-
+    @Test (enabled = false)
     public void testNavigation() {
         app.getNavigationHelper().gotoAddContactPage();
         app.getNavigationHelper().gotoNextBirthdaysPage();

@@ -10,7 +10,6 @@ import java.util.List;
 public class GroupCreationTests extends TestBase {
 
     @Test
-
     public void testGroupCreation() {
         app.getNavigationHelper().gotoGroupsPage();
         List<GroupData> before=app.getGroupHelper().getGroupList();
