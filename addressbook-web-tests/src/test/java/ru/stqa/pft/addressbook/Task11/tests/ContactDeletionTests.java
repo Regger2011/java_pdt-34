@@ -15,18 +15,18 @@ public class ContactDeletionTests extends TestBase {
         app.goTo().contactPage();
         if (app.contact().list().size() == 0) {
             app.goTo().addContact();
-            app.contact().create(new ContactData("Firstname", null, null, null, null, null, null, null, null, "[none]"));
+            app.contact().create(new ContactData().withFirstname("Firstname").withLastname("Lastname").withGroup("[none]"));
         }
     }
 
-    @Test (enabled = false)
+    @Test (enabled = true)
     public void testContactDeletion() {
         List<ContactData> before=app.contact().list();
         int index = before.size() - 1;
         app.contact().delete(index);
         List<ContactData> after = app.contact().list();
         before.remove(index);
-        Comparator<? super ContactData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
+        Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
         before.sort(byId);
         after.sort(byId);
         Assert.assertEquals(after, before);

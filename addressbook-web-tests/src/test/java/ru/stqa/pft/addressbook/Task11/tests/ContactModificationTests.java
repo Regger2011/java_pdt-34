@@ -16,15 +16,25 @@ public class ContactModificationTests extends TestBase {
         app.goTo().contactPage();
         if (app.contact().list().size() == 0) {
             app.goTo().addContact();
-            app.contact().create(new ContactData("Firstname", null, null, null, null, null, null, null, null, "[none]"));
+            app.contact().create(new ContactData().withFirstname("FirstName").withLastname("LastName").withGroup("[none]"));
         }
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void testContactModification() {
         List<ContactData> before = app.contact().list();
         int index = before.size() - 1;
-        ContactData contact = new ContactData(before.get(index).getId(), "FirstNamE", "MiddlenamE", "LastNamE", "CompanY", "AddresS", "TelephoneMobilE", "TelephoneWorK", "EmaiL", "HomepagE", null);
+        ContactData contact = new ContactData()
+                .withId(before.get(index).getId())
+                .withFirstname("FirstNamE")
+                .withMiddlename(null)
+                .withLastname("LastNamE")
+                .withCompany("CompanY")
+                .withAddress("AddresS")
+                .withTelephoneMobile("TelephoneMobilE")
+                .withTelephoneWork(null)
+                .withEmail("EmaiL")
+                .withHomepage(null);
         app.contact().modify(index, contact);
         List<ContactData> after = app.contact().list();
         before.remove(index);
