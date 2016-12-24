@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.Task10.model.ContactData;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,10 +73,10 @@ public class ContactHelper extends BaseHelper {
         List<ContactData> contacts = new ArrayList<ContactData>();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements){
-            String firstname = element.getText()/*.split(" ")[1]*/;
-            String lastname = element.getText()/*.split(" ")[0]*/;
+            String firstname = element.getText().split(" ")[1];
+            String lastname = element.getText().split(" ")[0];
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            ContactData contact = new ContactData(id,firstname, null,lastname,null,null,null,null,null,null, "[none]");
+            ContactData contact = new ContactData(firstname, null, lastname,null,null,null,null,null,null, "[none]");
             contacts.add (contact);
         }
         return contacts;
