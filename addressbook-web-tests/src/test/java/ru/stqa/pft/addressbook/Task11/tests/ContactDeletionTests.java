@@ -12,19 +12,19 @@ public class ContactDeletionTests extends TestBase {
 
     @BeforeMethod
     public void insurePreconditionsForContacts () {
-        app.getNavigationHelper().gotoHomePage();
-        if (!app.getContactHelper().isThereAContact()) {
-            app.getNavigationHelper().gotoAddContactPage();
-            app.getContactHelper().createContact(new ContactData("Firstname", null, null, null, null, null, null, null, null, "[none]"));
+        app.goTo().contactPage();
+        if (app.contact().list().size() == 0) {
+            app.goTo().addContact();
+            app.contact().create(new ContactData("Firstname", null, null, null, null, null, null, null, null, "[none]"));
         }
     }
 
     @Test (enabled = false)
     public void testContactDeletion() {
-        List<ContactData> before=app.getContactHelper().getContactList();
+        List<ContactData> before=app.contact().list();
         int index = before.size() - 1;
-        app.getContactHelper().deleteContact(index);
-        List<ContactData> after = app.getContactHelper().getContactList();
+        app.contact().delete(index);
+        List<ContactData> after = app.contact().list();
         before.remove(index);
         Comparator<? super ContactData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
         before.sort(byId);

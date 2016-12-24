@@ -9,14 +9,14 @@ public class NavigationHelper extends BaseHelper {
         super(wd);
     }
 
-    public void gotoHomePage() {
+    public void contactPage() {
         if (isElementPresent(By.id("maintable"))) {
             return;
         }
         click (By.linkText("home"));
     }
 
-    public void gotoAddContactPage() {
+    public void addContact() {
         if (isElementPresent(By.tagName("h1"))
                 && wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")){
             return;
@@ -24,7 +24,7 @@ public class NavigationHelper extends BaseHelper {
         click(By.linkText("add new"));
     }
 
-    public void gotoGroupsPage() {
+    public void groupPage() {
         if (isElementPresent(By.tagName("h1"))
                 && wd.findElement(By.tagName("h1")).getText().equals("Groups")
                 && isElementPresent(By.name("new"))) {
@@ -32,23 +32,23 @@ public class NavigationHelper extends BaseHelper {
         }
         click(By.linkText("groups"));
     }
-    public void gotoEditGroupsPage() {
+    public void editContact() {
         if (isElementPresent(By.tagName("h1"))
                 && wd.findElement(By.tagName("h1")).getText().equals("Groups")
                 && isElementPresent(By.name("update"))) {
             return;
         }
-        gotoGroupsPage();
+        groupPage();
         click(By.name("edit"));
     }
 
-    public void gotoNewGroupsPage() {
+    public void newGroup() {
         if (isElementPresent(By.tagName("h1"))
                 && wd.findElement(By.tagName("h1")).getText().equals("Groups")
                 && isElementPresent(By.name("submit"))) {
             return;
         }
-        gotoGroupsPage();
+        groupPage();
         click(By.name("new"));
     }
 

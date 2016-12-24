@@ -38,7 +38,7 @@ public class ContactHelper extends BaseHelper {
         click(By.xpath("//div[@id='content']/form/input[21]"));
     }
 
-    public void modifyContact(int index, ContactData contact) {
+    public void modify(int index, ContactData contact) {
         new NavigationHelper(wd).selection(index);
         initContactModification();
         fillContactForm(contact, false);
@@ -46,10 +46,10 @@ public class ContactHelper extends BaseHelper {
         returnToHomePage();
     }
 
-    public void deleteContact(int index) {
+    public void delete(int index) {
        new NavigationHelper(wd).selection(index);
        deleteContact();
-       new NavigationHelper(wd).gotoHomePage();
+       new NavigationHelper(wd).contactPage();
     }
 
     public void deleteContact() {
@@ -69,7 +69,7 @@ public class ContactHelper extends BaseHelper {
         click (By.linkText("home page"));
     }
 
-    public void createContact(ContactData contact) {
+    public void create(ContactData contact) {
         fillContactForm(contact,true);
         submitContactCreation();
         returnToHomePage();
@@ -83,7 +83,7 @@ public class ContactHelper extends BaseHelper {
         return wd.findElements(By.name("selected[]")).size();
     }
 
-    public List<ContactData> getContactList() {
+    public List<ContactData> list() {
         List<ContactData> contacts = new ArrayList<ContactData>();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements){
