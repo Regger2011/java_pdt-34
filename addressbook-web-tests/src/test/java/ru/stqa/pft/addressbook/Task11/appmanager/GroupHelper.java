@@ -58,6 +58,13 @@ public class GroupHelper extends BaseHelper {
         submitUpdateGroupModification();
         returnToGroupPage();
     }
+
+    public void deleteGroup(int index) {
+        new NavigationHelper(wd).selection(index);
+        deleteSelectedGroup();
+        returnToGroupPage();
+    }
+
     public boolean isThereAGroup() {
         return isElementPresent(By.name("selected[]"));
     }

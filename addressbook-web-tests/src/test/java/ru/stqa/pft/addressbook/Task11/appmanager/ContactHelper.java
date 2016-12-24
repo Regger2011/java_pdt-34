@@ -46,6 +46,12 @@ public class ContactHelper extends BaseHelper {
         returnToHomePage();
     }
 
+    public void deleteContact(int index) {
+       new NavigationHelper(wd).selection(index);
+       deleteContact();
+       new NavigationHelper(wd).gotoHomePage();
+    }
+
     public void deleteContact() {
         click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
         wd.switchTo().alert().accept();
