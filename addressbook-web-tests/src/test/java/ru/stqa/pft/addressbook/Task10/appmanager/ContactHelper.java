@@ -67,12 +67,15 @@ public class ContactHelper extends BaseHelper {
     public int getContactCount() {
         return wd.findElements(By.name("selected[]")).size();
     }
+
     public List<ContactData> getContactList() {
         List<ContactData> contacts = new ArrayList<ContactData>();
-        List<WebElement> elements = wd.findElements(By.name("selected[]"));
-        for (WebElement element:elements){
-            String name = element.getText();
-            ContactData contact = new ContactData("Firstname", null,null,null,null,null,null,null,null, "[none]");
+        List<WebElement> elements = wd.findElements(By.name("entry"));
+        for (WebElement element : elements){
+            String firstname = element.getText()/*.split(" ")[1]*/;
+            String lastname = element.getText()/*.split(" ")[0]*/;
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+            ContactData contact = new ContactData(id,firstname, null,lastname,null,null,null,null,null,null, "[none]");
             contacts.add (contact);
         }
         return contacts;
