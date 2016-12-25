@@ -1,13 +1,14 @@
 package ru.stqa.pft.addressbook.Task11.tests;
 
-import org.testng.Assert;
+import org.hamcrest.CoreMatchers;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.Task11.model.ContactData;
+import ru.stqa.pft.addressbook.Task11.model.Contacts;
 
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
+
 
 public class ContactModificationTests extends TestBase {
 
@@ -22,10 +23,10 @@ public class ContactModificationTests extends TestBase {
 
     @Test(enabled = true)
     public void testContactModification() {
-        List<ContactData> before = app.contact().list();
-        int index = before.size() - 1;
+        Contacts before = app.contact().all();
+        ContactData modyfiedContact = before.iterator().next();
         ContactData contact = new ContactData()
-                .withId(before.get(index).getId())
+                .withId(modyfiedContact.getId())
                 .withFirstname("FirstNamE")
                 .withMiddlename(null)
                 .withLastname("LastNamE")
@@ -35,14 +36,9 @@ public class ContactModificationTests extends TestBase {
                 .withTelephoneWork(null)
                 .withEmail("EmaiL")
                 .withHomepage(null);
-        app.contact().modify(index, contact);
-        List<ContactData> after = app.contact().list();
-        before.remove(index);
-        before.add(contact);
-        Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
-        before.sort(byId);
-        after.sort(byId);
-        Assert.assertEquals(before, after);
-        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+        app.contact().modify(contact);
+        Contacts after = app.contact().all();
+        assertEquals(before.size(),after.size());
+        assertThat(after, CoreMatchers.equalTo(before.without(modyfiedContact).withAdded(contact)));
     }
 }

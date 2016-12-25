@@ -1,12 +1,13 @@
 package ru.stqa.pft.addressbook.Task11.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.Task11.model.ContactData;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
+import ru.stqa.pft.addressbook.Task11.model.Contacts;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 public class ContactDeletionTests extends TestBase {
 
@@ -21,15 +22,11 @@ public class ContactDeletionTests extends TestBase {
 
     @Test (enabled = true)
     public void testContactDeletion() {
-        List<ContactData> before=app.contact().list();
-        int index = before.size() - 1;
-        app.contact().delete(index);
-        List<ContactData> after = app.contact().list();
-        before.remove(index);
-        Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
-        before.sort(byId);
-        after.sort(byId);
-        Assert.assertEquals(after, before);
-        Assert.assertEquals (new HashSet<Object>(before),new HashSet<Object>(after));
+        Contacts before=app.contact().all();
+        ContactData deletedContact = before.iterator().next();
+        app.contact().delete(deletedContact);
+        Contacts after = app.contact().all();
+        assertEquals(after.size(),before.size()-1);
+        assertThat(after , equalTo(before.without(deletedContact)));
     }
 }

@@ -6,11 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.Task11.model.ContactData;
+import ru.stqa.pft.addressbook.Task11.model.Contacts;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ContactHelper extends BaseHelper {
 
@@ -40,18 +39,22 @@ public class ContactHelper extends BaseHelper {
         click(By.xpath("//div[@id='content']/form/input[21]"));
     }
 
-    public void modify(int index, ContactData contact) {
-        new NavigationHelper(wd).selection(index);
+    public void modify(ContactData contact) {
+        selectContactById(contact.getId());
         initContactModification();
         fillContactForm(contact, false);
         submitUpdateContactModification();
         returnToHomePage();
     }
 
-    public void delete(int index) {
-       new NavigationHelper(wd).selection(index);
-       deleteContact();
-       new NavigationHelper(wd).contactPage();
+    private void selectContactById(int id) {
+        wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+    }
+
+    public void delete(ContactData contact) {
+        selectContactById(contact.getId());
+        deleteContact();
+        new NavigationHelper(wd).contactPage();
     }
 
     public void deleteContact() {
@@ -108,16 +111,16 @@ public class ContactHelper extends BaseHelper {
         return contacts;
     }
 
-    public Set<ContactData> all() {
-        Set<ContactData> contacts = new HashSet<ContactData>();
+    public Contacts all() {
+        Contacts contacts = new Contacts();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements){
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
             String firstname = element.getText().split(" ")[0];
-            String middlename = element.getText().split(" ")[0];
+            //String middlename = element.getText().split(" ")[0];
             String lastname = element.getText().split(" ")[0];
             String address = element.getText().split(" ")[0];
-            String telephoneMobile = element.getText().split(" ")[0];
+            //String telephoneMobile = element.getText().split(" ")[0];
             String email = element.getText().split(" ")[0];
             contacts.add (new ContactData()
                     .withId(id)
