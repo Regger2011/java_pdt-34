@@ -1,13 +1,13 @@
-package ru.stqa.pft.addressbook.Task12.tests;
+package ru.stqa.pft.addressbook.Task13.tests;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ru.stqa.pft.addressbook.Task12.model.ContactData;
+import ru.stqa.pft.addressbook.Task13.model.ContactData;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ContactPhoneTests extends TestBase{
+public class ContactPhoneTests extends TestBase {
 
     @BeforeMethod
     public void insurePreconditionsForContacts () {
@@ -35,6 +35,5 @@ public class ContactPhoneTests extends TestBase{
         assertThat(contact.getTelephoneHome(), equalTo(contactInfoFromEditForm.getTelephoneHome()));
         assertThat(contact.getTelephoneMobile(), equalTo(contactInfoFromEditForm.getTelephoneMobile()));
         assertThat(contact.getTelephoneWork(), equalTo(contactInfoFromEditForm.getTelephoneWork()));
-        assertThat(contact.getEmail(), equalTo(contactInfoFromEditForm.getEmail()));
-    }
+        assertThat(contact.getEmail(), equalTo(contactInfoFromEditForm.getEmail()));}
 }
