@@ -93,7 +93,6 @@ public class NavigationHelper extends BaseHelper {
     }
 
     public void selection(int index) {
-        wd.findElements(By.name("selected[]")).get(index).click();
+        wd.findElements(By.name("input[]")).get(index).click();
     }
-
 }

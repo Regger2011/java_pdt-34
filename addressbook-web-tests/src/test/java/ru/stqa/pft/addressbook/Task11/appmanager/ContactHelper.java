@@ -8,7 +8,9 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.Task11.model.ContactData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends BaseHelper {
 
@@ -94,15 +96,37 @@ public class ContactHelper extends BaseHelper {
             String address = element.getText().split(" ")[0];
             String telephoneMobile = element.getText().split(" ")[0];
             String email = element.getText().split(" ")[0];
-            ContactData contact = new ContactData()
+            contacts.add (new ContactData()
                     .withId(id)
                     .withFirstname(firstname)
                     .withMiddlename(middlename)
                     .withLastname(lastname)
                     .withAddress(address)
                     .withTelephoneMobile(telephoneMobile)
-                    .withEmail(email);
-            contacts.add (contact);
+                    .withEmail(email));
+        }
+        return contacts;
+    }
+
+    public Set<ContactData> all() {
+        Set<ContactData> contacts = new HashSet<ContactData>();
+        List<WebElement> elements = wd.findElements(By.name("entry"));
+        for (WebElement element : elements){
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+            String firstname = element.getText().split(" ")[0];
+            String middlename = element.getText().split(" ")[0];
+            String lastname = element.getText().split(" ")[0];
+            String address = element.getText().split(" ")[0];
+            String telephoneMobile = element.getText().split(" ")[0];
+            String email = element.getText().split(" ")[0];
+            contacts.add (new ContactData()
+                    .withId(id)
+                    .withFirstname(firstname)
+                    //.withMiddlename(middlename)
+                    .withLastname(lastname)
+                    .withAddress(address)
+                    //.withTelephoneMobile(telephoneMobile)
+                    .withEmail(email));
         }
         return contacts;
     }

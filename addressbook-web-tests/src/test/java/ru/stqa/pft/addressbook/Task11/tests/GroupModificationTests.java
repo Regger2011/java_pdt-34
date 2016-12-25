@@ -4,32 +4,30 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.Task11.model.GroupData;
-
-import java.util.HashSet;
-import java.util.List;
+import java.util.Set;
 
 public class GroupModificationTests extends TestBase {
 
     @BeforeMethod
     public void insurePreconditionsForGroups () {
         app.goTo().groupPage();
-        if (app.group().list().size() == 0) {
+        if (app.group().all().size() == 0) {
             app.group().create(new GroupData().withName("test1"));
         }
     }
 
     @Test
     public void testGroupModification () {
-        List<GroupData> before=app.group().list();
-        int index = before.size() - 1;
+        Set<GroupData> before=app.group().all();
+        GroupData modyfiedGroup = before.iterator().next();
         GroupData group = new GroupData()
-                .withId(before.get(index).getId())
+                .withId(modyfiedGroup.getId())
                 .withName("tEsT1")
                 .withHeader("tEsT2")
                 .withFooter("tEsT3");
-        app.group().modify(index, group);
-        List<GroupData> after = app.group().list();
-        before.remove(index);
+        app.group().modify(group);
+        Set<GroupData> after = app.group().all();
+        before.remove(modyfiedGroup);
         before.add(group);
         Assert.assertEquals(before,after);
     }
