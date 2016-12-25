@@ -82,7 +82,7 @@ public class GroupHelper extends BaseHelper {
         }
     }
 
-    public int getGroupCount() {
+    public int count() {
         return wd.findElements(By.name("selected[]")).size();
     }
 

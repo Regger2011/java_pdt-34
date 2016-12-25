@@ -37,8 +37,8 @@ public class ContactModificationTests extends TestBase {
                 .withEmail("EmaiL")
                 .withHomepage(null);
         app.contact().modify(contact);
+        assertEquals(app.contact().count(),before.size());
         Contacts after = app.contact().all();
-        assertEquals(before.size(),after.size());
         assertThat(after, CoreMatchers.equalTo(before.without(modyfiedContact).withAdded(contact)));
     }
 }
