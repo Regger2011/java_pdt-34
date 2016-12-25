@@ -12,7 +12,7 @@ public class ContactPhoneTests extends TestBase {
     @BeforeMethod
     public void insurePreconditionsForContacts () {
         app.goTo().contactPage();
-        if (app.contact().list().size() == 0) {
+        if (app.contact().allCash().size() == 0) {
             app.goTo().addContact();
             app.contact().create(new ContactData()
                     .withFirstname("FirstName")
@@ -31,9 +31,14 @@ public class ContactPhoneTests extends TestBase {
         app.goTo().contactPage();
         ContactData contact = app.contact().all().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
-        assertThat(contact.getAddress(), equalTo(contactInfoFromEditForm.getAddress()));
-        assertThat(contact.getTelephoneHome(), equalTo(contactInfoFromEditForm.getTelephoneHome()));
-        assertThat(contact.getTelephoneMobile(), equalTo(contactInfoFromEditForm.getTelephoneMobile()));
+        assertThat(contact.getAddress(), equalTo(cleaned(contactInfoFromEditForm.getAddress())));
+        assertThat(contact.getTelephoneHome(), equalTo(cleaned(contactInfoFromEditForm.getTelephoneHome())));
+        assertThat(contact.getTelephoneMobile(), equalTo(cleaned(contactInfoFromEditForm.getTelephoneMobile())));
         assertThat(contact.getTelephoneWork(), equalTo(contactInfoFromEditForm.getTelephoneWork()));
-        assertThat(contact.getEmail(), equalTo(contactInfoFromEditForm.getEmail()));}
+        assertThat(contact.getEmail(), equalTo(contactInfoFromEditForm.getEmail()));
+    }
+
+    public String cleaned(String phone) {
+        return phone.replaceAll("\\s","").replaceAll("[-()]","");
+    }
 }

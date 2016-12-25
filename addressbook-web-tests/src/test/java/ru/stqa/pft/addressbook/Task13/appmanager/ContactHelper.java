@@ -128,6 +128,30 @@ public class ContactHelper extends BaseHelper {
     private Contacts contactCash = null;
 
     public Contacts all() {
+        Contacts contacts = new Contacts();
+        List<WebElement> rows = wd.findElements(By.name("entry"));
+        for (WebElement row : rows){
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+            String lastname = cells.get(1).getText();
+            String firstname = cells.get(2).getText();
+            String address = cells.get(3).getText();
+            String email = cells.get(4).getText();
+            String[] phones = cells.get(5).getText().split("\n");
+            contacts.add (new ContactData()
+                    .withId(id)
+                    .withFirstname(firstname)
+                    .withLastname(lastname)
+                    .withAddress(address)
+                    .withTelephoneHome(phones[0])
+                    .withTelephoneWork(phones[1])
+                    .withTelephoneMobile(phones[2])
+                    .withEmail(email));
+        }
+        return contacts;
+    }
+
+    public Contacts allCash() {
         if (contactCash !=null) {
             return new Contacts(contactCash);
         }
