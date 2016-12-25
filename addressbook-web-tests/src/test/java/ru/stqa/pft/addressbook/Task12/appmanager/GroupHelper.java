@@ -48,6 +48,7 @@ public class GroupHelper extends BaseHelper {
         initGroupCreation();
         fillGroupForm(group);
         submitGroupCreation();
+        groupCash = null;
         returnToGroupPage();
     }
 
@@ -56,12 +57,14 @@ public class GroupHelper extends BaseHelper {
         initGroupModification();
         fillGroupForm(group);
         submitUpdateGroupModification();
+        groupCash = null;
         returnToGroupPage();
     }
 
     public void delete(GroupData group) {
         selectGroupById(group.getId());
         deleteSelectedGroup();
+        groupCash = null;
         returnToGroupPage();
     }
 
@@ -83,14 +86,19 @@ public class GroupHelper extends BaseHelper {
         return wd.findElements(By.name("selected[]")).size();
     }
 
+    private Groups groupCash = null;
+
     public Groups all() {
-        Groups groups = new Groups();
+        if (groupCash !=null) {
+            return new Groups(groupCash);
+        }
+        groupCash = new Groups();
         List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
         for (WebElement element:elements){
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
             String name = element.getText();
-            groups.add (new GroupData().withId(id).withName(name));
+            groupCash.add (new GroupData().withId(id).withName(name));
         }
-        return groups;
+        return new Groups(groupCash);
     }
 }

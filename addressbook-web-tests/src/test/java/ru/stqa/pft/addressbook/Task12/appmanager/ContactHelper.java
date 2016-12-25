@@ -44,6 +44,7 @@ public class ContactHelper extends BaseHelper {
         initContactModification();
         fillContactForm(contact, false);
         submitUpdateContactModification();
+        contactCash = null;
         returnToHomePage();
     }
 
@@ -54,6 +55,7 @@ public class ContactHelper extends BaseHelper {
     public void delete(ContactData contact) {
         selectContactById(contact.getId());
         deleteContact();
+        contactCash = null;
         new NavigationHelper(wd).contactPage();
     }
 
@@ -77,6 +79,7 @@ public class ContactHelper extends BaseHelper {
     public void create(ContactData contact) {
         fillContactForm(contact,true);
         submitContactCreation();
+        contactCash = null;
         returnToHomePage();
     }
 
@@ -111,8 +114,13 @@ public class ContactHelper extends BaseHelper {
         return contacts;
     }
 
+    private Contacts contactCash = null;
+
     public Contacts all() {
-        Contacts contacts = new Contacts();
+        if (contactCash !=null) {
+            return new Contacts(contactCash);
+        }
+        contactCash = new Contacts();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements){
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
@@ -122,7 +130,7 @@ public class ContactHelper extends BaseHelper {
             String address = element.getText().split(" ")[0];
             //String telephoneMobile = element.getText().split(" ")[0];
             String email = element.getText().split(" ")[0];
-            contacts.add (new ContactData()
+            contactCash.add (new ContactData()
                     .withId(id)
                     .withFirstname(firstname)
                     //.withMiddlename(middlename)
@@ -131,6 +139,6 @@ public class ContactHelper extends BaseHelper {
                     //.withTelephoneMobile(telephoneMobile)
                     .withEmail(email));
         }
-        return contacts;
+        return new Contacts(contactCash);
     }
 }
