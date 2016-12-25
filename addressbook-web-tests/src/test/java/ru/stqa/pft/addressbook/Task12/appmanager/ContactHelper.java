@@ -139,15 +139,14 @@ public class ContactHelper extends BaseHelper {
             String firstname = cells.get(2).getText();
             String address = cells.get(3).getText();
             String email = cells.get(4).getText();
-            String[] phones = cells.get(5).getText().split("\n");
+            String allPhones = cells.get(5).getText();
+            //String[] phones = cells.get(5).getText().split("\n");
             contacts.add (new ContactData()
                     .withId(id)
                     .withFirstname(firstname)
                     .withLastname(lastname)
                     .withAddress(address)
-                    .withTelephoneHome(phones[0])
-                    .withTelephoneWork(phones[1])
-                    .withTelephoneMobile(phones[2])
+                    .withAllPhones(allPhones)
                     .withEmail(email));
         }
         return contacts;
